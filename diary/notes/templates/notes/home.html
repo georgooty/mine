@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Diary</title>
+      <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}" >
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.min.css" %}" >
+</head>
+<body ng-app="diary.project">
+<div class="container">
+    <header>
+
+    </header>
+    {% verbatim %}
+    <div id="projectdetailswrapper" ng-controller="DiaryProjectController">
+       <div id="projectView">
+            <div class="list" id="{{list.id}}" ng-repeat="list in data" ng-click="selectProject(list)">
+                <div class="prjName">{{list.name}}</div>
+            </div>
+       </div>
+
+         <div id="detailsView">
+             <div class="description">Description</div>
+           <div class="prjDesc"> <span> {{project.description}}</span></div>
+             <div class="description">Notes</div>
+             <div ng-repeat="note in project.project_notes" class="notedetails">
+                <div class="noteName">{{note.title}}</div>
+                 <div class="noteDesc"> <span>{{note.description}}</span></div>
+            </div>
+
+       </div>
+    </div>
+
+
+    {% endverbatim %}
+    <footer>Copyright &copy; georgooty.com</footer>
+</div>
+ <script src="{% static "js/angular.min.js" %}"></script>
+ <script src="{% static "js/jquery.min.js" %}"></script>
+  <script src="{% static "js/popper.min.js" %}"></script>
+  <script src="{% static "js/diary.js" %}"></script>
+</body>
+</html>
