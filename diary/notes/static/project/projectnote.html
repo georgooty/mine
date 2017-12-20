@@ -1,0 +1,12 @@
+<div id="noteTitle">
+    <span>{{note.title}}</span>
+    <button class="editBtn" ng-hide="edit" ng-click="edit=true">Edit</button>
+    <button class="deleteBtn" ng-click="deleteNote(note)">Delete</button>
+</div>
+<div class="noteDesc"><span>{{note.description}}</span></div>
+
+<div class="notedetails" ng-show="edit" >
+    <div class="noteName"><input type="text" ng-model="note.title" ng-change="updateNote()" /></div>
+    <div class="noteDesc"><textarea ng-model="note.description" placeholder="Enter description.." ng-change="updateNote()" ></textarea></div>
+    <button ng-click="edit=false">Close</button>
+</div>

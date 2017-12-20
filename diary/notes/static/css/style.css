@@ -1,11 +1,12 @@
 html {
     font-size: 1em;
     line-height: 1.4;
+
 }
 
-div.container {
-    width: 100%;
-
+container {
+   /* width: 100%;*/
+ padding: 80px 120px;
 }
 
 .description{
@@ -15,20 +16,14 @@ padding:10px;
 margin:10px;
 }
 
-header, footer {
-    padding: 1em;
-    color: white;
-    background-color: grey;
-    clear: left;
-    text-align: center;
-}
+
 
 #projectdetailswrapper{
-width:95%;
-height:100%;
+/*width:100%;
+height:100%;*/
 
     padding: 3px;
-    margin: 15px 5px 15px 30px;
+    margin:5px;
 }
 #projectView{
     /*width: 300px;
@@ -42,24 +37,41 @@ height:100%;
     padding:10px;
 }
 #detailsView{
-/*height: 300px;*/
- padding: 0;
+
     overflow-y: auto;
+
+
+}
+#notesection{
+
+}
+
+.notedetails
+{
+    width: 250px;
+    height:300px;
+    /*position: relative;   */      /* Very important, for appending child <div>s with absolute positioning later */
+   margin:3px;
+    background-color: #f4e1d2;
+
+    float:left;
+    overflow: no-display;
 
 
 }
 
 
-.notedetails
+.newnotedetails
 {
-    width: 80%;
-    position: relative;         /* Very important, for appending child <div>s with absolute positioning later */
-    padding: 5px;
+    width: 250px;
+    height:300px;
+    /*position: relative;   */      /* Very important, for appending child <div>s with absolute positioning later */
+   margin:3px;
+    background-color: grey;
 
-    background-color: white;
-
-    margin: 15px 20px 15px 20px;
+    float:left;
     overflow: no-display;
+
 
 }
 
@@ -70,6 +82,7 @@ height:100%;
     padding: 7px;
     margin: 7px;
     background-color: grey;
+    color:white;
 }
 
 .list h3 {
@@ -78,6 +91,42 @@ height:100%;
 }
 
 .noteName{
+background-color: #50394c;
+color:white;
+height:35px;
+}
+
+#noteTitle{
+background-color: #50394c;
+color:white;
+height:35px;
+}
+
+.deleteBtn{
+  /*  border: none;*/
+    background: url('/static/img/delete_64x64.png') no-repeat;
+
+    float:right;
+    padding:2px;
+    margin:2px;
+    height:20px;
+    width:20px;
+
+
+
+}
+
+.editBtn{
+  /*  border: none;*/
+    background: url('/static/img/edit.png') no-repeat;
+
+
+    padding:2px;
+    margin:2px;
+    height:20px;
+    width:20px;
+
+
 
 }
 
@@ -92,7 +141,6 @@ letter-spacing: 3px;
 }
 
 .noteDesc{
-text-align: justify;
-letter-spacing: 3px;
+overflow-x:auto;
 
 }
