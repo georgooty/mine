@@ -4,8 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
     <title>Diary</title>
     <!--<link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.min.css" %}" >-->
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}" >
       <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}" >
 
 </head>
@@ -14,40 +17,111 @@
     <div ng-controller="DiaryProjectController" id="projectdetailswrapper" >
        <div id="projectView">
             <div class="list" id="{{list.id}}" ng-repeat="list in data" ng-click="selectProject(list)">
-                <div class="prjName">{{list.name}}</div>
+                <div class="prjName">{{list.name}}
+                 <button class="deleteBtn" ng-click="deleteProject(list)"></button>
+                 <button class="editBtn" ng-click="editProject()"></button>
+                </div>
             </div>
-       </div>
 
-        <div id="detailsView">
+           <div class="newItem">
+               <button class="prjName" ng-click="ShowNewPrjDialog()">New category</button>
+           </div>
+       </div>
+        <div modal="showNewProjectDlg" close="cancel()">
+            <div class="modal-header">
+            <h4>New category</h4>
+            </div>
+            <div class="modal-body">
+                <label><strong>Name:&nbsp;</strong></label>
+                <input type="text" ng-model="new_prj_name" placeholder="Enter name..." />
+                <label><strong>Description:&nbsp;</strong></label>
+                <textarea ng-model="new_prj_description" placeholder="Enter description.." ></textarea>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" ng-click="createProject(new_prj_name,new_prj_description)">Save</button>
+                <button class="btn" ng-click="cancelProject()">Cancel</button>
+            </div>
+        </div>
+
+         <div modal="showEditProjectDlg" close="cancel()">
+            <div class="modal-header">
+            <h4>Edit category</h4>
+            </div>
+            <div class="modal-body">
+                <label><strong>Name:&nbsp;</strong></label>
+                <input type="text" ng-model="project.name" placeholder="Enter name..." />
+                <label><strong>Description:&nbsp;</strong></label>
+                <textarea ng-model="project.description" placeholder="Enter description.." ></textarea>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" ng-click="updateProject(project)">Save</button>
+                <button class="btn" ng-click="cancelEditProject()">Cancel</button>
+            </div>
+        </div>
+
+
+        <div id="detailsView" class="content">
+            <h2>{{project.name}}</h2>
             <div class="description">Description</div>
-            <div class="prjDesc"> <span> {{project.description}}</span></div>
+            <div class="prjDesc"> <p> {{project.description}}</p></div>
             <div class="description">Notes</div>
 <!--class="notedetails"-->
             <div id="notesection">
-                <div ng-repeat="note in project.project_notes" class="notedetails" >
-                      <diary-project-note></diary-project-note>
-            </div>
 
-                 <input type="button" value="Add Note" ng-click="ShowNoteDiv()" />
-            <div class="newnotedetails" ng-show = "IsNewNoteVisible">
-                     <div class="noteName"><input type="text" ng-model="new_title" /></div>
-                     <div class="noteDesc"><textarea ng-model="new_description" placeholder="Enter description.." ></textarea></div>
-                     <button ng-click="createNote(project,new_title,new_description)">Add note</button>
+                <div ng-repeat="note in project.project_notes">
+                     <!--<project-note></project-note>-->
+                    <div class="notedetails">
+
+                        <div class="notecaption">
+                            <label class="title">{{note.title}}</label>
+                            <button class="deleteBtn" ng-click="deleteNote(note)"></button>
+                            <button class="editBtn" ng-click="editNote=true"></button>
+                        </div>
+                        <div>
+                            <pre>{{note.description}}</pre>
+                            </div>
+                    </div>
+                    <div class="notedetails" ng-show="editNote" >
+                    <div class="notecaption">
+                        <label><strong>Title:&nbsp;</strong></label>
+                        <input type="text" ng-model="note.title" ng-change="updateNote(note)" />
+                    </div>
+                    <label><strong>Description:&nbsp;</strong></label>
+                    <textarea ng-model="note.description" placeholder="Enter description.." ng-change="updateNote(note)" rows="10" cols="80" ></textarea>
+                    <button ng-click="editNote=false">Close</button>
+                </div>
+                </div>
+
             </div>
+ <button class="addBtn" ng-click="ShowNoteDiv()" ng-show = "IsAddButtonVisible"></button>
+                <div class="newnotedetails" ng-show = "IsNewNoteVisible">
+                    <div class="noteName"><input type="text" ng-model="new_title" placeholder="Enter title..." /></div>
+                    <div class="noteDesc"><textarea ng-model="new_description" placeholder="Enter description.." ></textarea></div>
+                    <button ng-click="createNote(project,new_title,new_description)">Save</button>
+                </div>
+
+              <div class="newprojectdetails" ng-show = "IsNewProjectVisible">
+                    <div class="noteName"><input type="text" ng-model="new_prj_title" placeholder="Enter project name..." /></div>
+                    <div class="noteDesc"><textarea ng-model="new_prj_description" placeholder="Enter description.." ></textarea></div>
+                    <button ng-click="createProject(new_prj_title,new_prj_description)">Save</button>
+                </div>
+
         </div>
     </div>
 
-    </div>
+
     {% endverbatim %}
 
 
 
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
- <!--<script src="{% static "js/angular.min.js" %}"></script>-->
- <!--<script src="{% static "js/jquery.min.js" %}"></script>-->
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>-->
+ <script src="{% static "js/angular.min.js" %}"></script>
+ <script src="{% static "js/jquery.min.js" %}"></script>
+    <script src="{% static "js/angular-ui-bootstrap-modal.js" %}"></script>
 
   <script src="{% static "js/diary.js" %}"></script>
- <script src="{% static "project/projectnote.directive.js" %}"></script>
+ <!--<script src="{% static "project/projectnote.directive.js" %}"></script>-->
+
 
 </body>
 </html>

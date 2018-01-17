@@ -35,6 +35,9 @@ height:100%;*/
     cursor: pointer;
 
     padding:10px;
+     background-color: #f1f1f1;
+      height: 100%;
+      width:200px;
 }
 #detailsView{
 
@@ -48,13 +51,14 @@ height:100%;*/
 
 .notedetails
 {
-    width: 250px;
+    width: 300px;
     height:300px;
-    /*position: relative;   */      /* Very important, for appending child <div>s with absolute positioning later */
-   margin:3px;
+   /*position: relative;  */       /* Very important, for appending child <div>s with absolute positioning later */
+    margin:5px;
+   /* padding:5px;*/
     background-color: #f4e1d2;
 
-    float:left;
+  float:left;
     overflow: no-display;
 
 
@@ -74,20 +78,32 @@ height:100%;*/
 
 
 }
-
+.title{
+width:240px;
+color:white;
+}
 .list {
 
-
-    border: 1px solid grey;
     padding: 7px;
     margin: 7px;
-    background-color: grey;
-    color:white;
+    background-color: #b6b786;
+    width:auto;
+    border: 2px hidden #b6b786;
+    border-radius: 10px;
 }
+.newItem {
 
-.list h3 {
-    padding-left: 7px;
-    color: white;
+    padding: 7px;
+    margin: 7px;
+    background-color: #129ee4;
+    width:auto;
+}
+.list:hover {
+
+
+
+   /* width:auto;*/
+    border:1px groove #555603;
 }
 
 .noteName{
@@ -102,9 +118,15 @@ color:white;
 height:35px;
 }
 
+.notecaption{
+background-color: #ccb463;
+
+height:35px;
+}
+
 .deleteBtn{
-  /*  border: none;*/
-    background: url('/static/img/delete_64x64.png') no-repeat;
+    border: none;
+    background: url('/static/img/delete_20x20.png') no-repeat;
 
     float:right;
     padding:2px;
@@ -112,21 +134,41 @@ height:35px;
     height:20px;
     width:20px;
 
+position:relative;
+
+}
+.deleteBtn:hover{
+border:1px solid white;
+}
+.addBtn:hover{
+border:1px solid white;
+}
+.editBtn:hover{
+border:1px solid white;
+}
+.addBtn{
+    border: none;
+    background: url('/static/img/add_64x64.png') no-repeat;
+
+    padding:2px;
+    margin:2px;
+    height:128px;
+    width:128px;
+
 
 
 }
 
 .editBtn{
-  /*  border: none;*/
-    background: url('/static/img/edit.png') no-repeat;
-
-
+    border: none;
+    background: url('/static/img/edit_20x20.png') no-repeat;
     padding:2px;
     margin:2px;
+     float:right;
     height:20px;
     width:20px;
 
-
+position:relative;
 
 }
 

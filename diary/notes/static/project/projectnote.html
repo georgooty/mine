@@ -1,12 +1,35 @@
-<div id="noteTitle">
-    <span>{{note.title}}</span>
-    <button class="editBtn" ng-hide="edit" ng-click="edit=true">Edit</button>
-    <button class="deleteBtn" ng-click="deleteNote(note)">Delete</button>
+
+<div class="notedetails">
+<div class="notecaption">
+    <button class="addBtn" ng-click="ShowNoteDiv()" >+</button>
+    <label class="title">{{note.title}}</label>
+    <button class="deleteBtn" ng-click="deleteNote(note)"></button>
+    <button class="editBtn" ng-click="edit=true"></button>
 </div>
-<div class="noteDesc"><span>{{note.description}}</span></div>
+    <span>{{note.description}}</span>
+</div>
+<!--<div class="notedetails">-->
+    <!--<div id="noteTitle">-->
+        <!--<h4>{{note.title}}</h4>-->
+        <!--<button class="editBtn" ng-click="edit=true"></button>-->
+        <!--<button class="deleteBtn" ng-click="deleteNote(note)"></button>-->
+        <!--&lt;!&ndash;<button value="Add Note" ng-click="ShowNoteDiv()" >+</button>&ndash;&gt;-->
+        <!--<button value="Add Note" ng-click="ShowNoteDiv()" >+</button>-->
+    <!--</div>-->
+    <!--<span>{{note.description}}</span>-->
+<!--</div>-->
+
 
 <div class="notedetails" ng-show="edit" >
-    <div class="noteName"><input type="text" ng-model="note.title" ng-change="updateNote()" /></div>
-    <div class="noteDesc"><textarea ng-model="note.description" placeholder="Enter description.." ng-change="updateNote()" ></textarea></div>
+    <div class="notecaption">
+         <label><strong>Title:&nbsp;</strong></label>
+        <input type="text" ng-model="note.title" ng-change="updateNote()" /></div>
+     <label><strong>Description:&nbsp;</strong></label>
+        <textarea ng-model="note.description" placeholder="Enter description.." ng-change="updateNote()" ></textarea>
     <button ng-click="edit=false">Close</button>
 </div>
+  <div class="newnotedetails" ng-show = "IsNewNoteVisible">
+                     <div class="noteName"><input type="text" ng-model="new_title" placeholder="Enter title..." /></div>
+                     <div class="noteDesc"><textarea ng-model="new_description" placeholder="Enter description.." ></textarea></div>
+                     <button ng-click="createNote(project,new_title,new_description)">Save</button>
+  </div>
